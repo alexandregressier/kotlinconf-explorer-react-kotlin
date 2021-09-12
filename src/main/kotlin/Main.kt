@@ -1,5 +1,12 @@
 import kotlinx.browser.document
+import kotlinx.css.Position.absolute
+import kotlinx.css.position
+import kotlinx.css.px
+import kotlinx.css.right
+import kotlinx.css.top
 import react.dom.*
+import styled.css
+import styled.styledDiv
 
 external interface Video {
     val id: Int
@@ -38,9 +45,19 @@ fun main() {
                 p { +"${video.speaker}: ${video.title}" }
             }
         }
-        div {
+        styledDiv {
+            css {
+                position = absolute
+                top = 10.px
+                right = 10.px
+            }
             h3 { +"John Doe: Building and breaking things" }
-            img { attrs { src = "https://via.placeholder.com/640x360.png?text=Video+Player+Placeholder" } }
+            img {
+                attrs {
+                    src = "https://via.placeholder.com/640x360.png?text=Video+Player+Placeholder"
+                    alt = "Video Player Placeholder"
+                }
+            }
         }
     }
 }
