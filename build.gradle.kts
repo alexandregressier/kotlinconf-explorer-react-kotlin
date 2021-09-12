@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
+
 plugins {
     kotlin("js") version "1.5.10"
 }
@@ -20,6 +22,12 @@ kotlin {
     js(IR) {
         binaries.executable()
         browser {}
+    }
+}
+
+afterEvaluate {
+    rootProject.extensions.configure<NodeJsRootExtension> {
+        versions.webpackDevServer.version = "${project.extra["version.webpackDevServer"]}"
     }
 }
 
