@@ -22,7 +22,7 @@ class VideoList : RComponent<VideoListProps, State>() {
                     onClickFunction = { props.onSelectVideo(video) }
                 }
                 if (video == props.selectedVideo) +"▶ "
-                +"${video.speaker}: ${video.title}"
+                video.run { +"$speaker: $title" }
             }
         }
     }

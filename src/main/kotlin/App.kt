@@ -1,12 +1,7 @@
-import kotlinx.css.Position.absolute
-import kotlinx.css.position
-import kotlinx.css.px
-import kotlinx.css.right
-import kotlinx.css.top
 import react.*
-import react.dom.*
-import styled.css
-import styled.styledDiv
+import react.dom.div
+import react.dom.h1
+import react.dom.h3
 
 external interface AppState : State {
     var currentVideo: Video?
@@ -30,19 +25,6 @@ class App : RComponent<Props, AppState>() {
                 onSelectVideo = { setState { currentVideo = it } }
             }
         }
-        styledDiv {
-            css {
-                position = absolute
-                top = 10.px
-                right = 10.px
-            }
-            h3 { +"John Doe: Building and breaking things" }
-            img {
-                attrs {
-                    src = "https://via.placeholder.com/640x360.png?text=Video+Player+Placeholder"
-                    alt = "Video Player Placeholder"
-                }
-            }
-        }
+        state.currentVideo?.let { videoPlayer { video = it } }
     }
 }
