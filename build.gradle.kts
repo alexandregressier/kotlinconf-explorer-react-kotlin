@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
-
 plugins {
     kotlin("js")
 }
@@ -11,30 +9,33 @@ repositories {
     mavenCentral()
 }
 
+fun kotlinw(target: String): String =
+    "org.jetbrains.kotlin-wrappers:kotlin-$target"
+
 dependencies {
-    testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlin-wrappers:kotlin-react:_")
-    implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom:_")
-    implementation("org.jetbrains.kotlin-wrappers:kotlin-styled:_")
+    implementation(enforcedPlatform(kotlinw("wrappers-bom:_")))
+
+    implementation(kotlinw("react"))
+    implementation(kotlinw("react-dom"))
+    implementation(kotlinw("styled"))
+
+    implementation(npm("react-youtube-lite", "_"))
+    implementation(npm("react-share", "_"))
+
+    implementation(KotlinX.coroutines.core)
 }
 
 kotlin {
     js(IR) {
-        binaries.executable()
         browser {
             commonWebpackConfig {
                 cssSupport.enabled = true
             }
         }
+        binaries.executable()
     }
 }
 
-afterEvaluate {
-    rootProject.extensions.configure<NodeJsRootExtension> {
-        versions.webpackDevServer.version = "${project.extra["version.webpackDevServer"]}"
-    }
-}
-
-tasks.withType<Wrapper> {
+tasks.wrapper {
     gradleVersion = "${project.extra["version.gradle"]}"
 }
