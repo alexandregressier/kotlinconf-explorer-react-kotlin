@@ -21,3 +21,8 @@ class VideoList : RComponent<VideoListProps, State>() {
         }
     }
 }
+
+fun RBuilder.videoList(handler: VideoListProps.() -> Unit) =
+    child(VideoList::class) {
+        attrs(handler)
+    }
