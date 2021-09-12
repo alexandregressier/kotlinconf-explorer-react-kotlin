@@ -1,0 +1,1 @@
+rootProject.name = "kotlinconf-explorer-react-kotlin"
