@@ -3,25 +3,32 @@ import kotlinx.css.position
 import kotlinx.css.px
 import kotlinx.css.right
 import kotlinx.css.top
-import react.Props
-import react.RBuilder
-import react.RComponent
-import react.State
+import react.*
 import react.dom.*
 import styled.css
 import styled.styledDiv
 
+external interface AppState : State {
+    var currentVideo: Video?
+}
 @JsExport
-class App : RComponent<Props, State>() {
+class App : RComponent<Props, AppState>() {
 
     override fun RBuilder.render() {
         h1 { +"Hello, React & Kotlin/JS!" }
         div {
             h3 { +"Videos to watch" }
-            videoList { videos = unwatchedVideos }
-
+            videoList {
+                videos = unwatchedVideos
+                selectedVideo = state.currentVideo
+                onSelectVideo = { setState { currentVideo = it } }
+            }
             h3 { +"Videos watched" }
-            videoList { videos = watchedVideos }
+            videoList {
+                videos = watchedVideos
+                selectedVideo = state.currentVideo
+                onSelectVideo = { setState { currentVideo = it } }
+            }
         }
         styledDiv {
             css {
