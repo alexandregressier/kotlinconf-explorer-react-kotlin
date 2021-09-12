@@ -19,13 +19,10 @@ class App : RComponent<Props, State>() {
         h1 { +"Hello, React & Kotlin/JS!" }
         div {
             h3 { +"Videos to watch" }
-            unwatchedVideos.forEach { video ->
-                p { +"${video.speaker}: ${video.title}" }
-            }
+            child(VideoList::class) { attrs.videos = unwatchedVideos }
+
             h3 { +"Videos watched" }
-            watchedVideos.forEach { video ->
-                p { +"${video.speaker}: ${video.title}" }
-            }
+            child(VideoList::class) { attrs.videos = watchedVideos }
         }
         styledDiv {
             css {
