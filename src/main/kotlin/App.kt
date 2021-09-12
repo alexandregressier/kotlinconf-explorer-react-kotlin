@@ -11,7 +11,6 @@ import react.dom.*
 import styled.css
 import styled.styledDiv
 
-@ExperimentalJsExport
 @JsExport
 class App : RComponent<Props, State>() {
 

@@ -11,7 +11,6 @@ external interface VideoListProps : Props {
     var videos: List<Video>
 }
 
-@ExperimentalJsExport
 @JsExport
 class VideoList : RComponent<VideoListProps, State>() {
 
@@ -20,7 +19,7 @@ class VideoList : RComponent<VideoListProps, State>() {
             p {
                 key = "${video.id}"
                 attrs {
-                    onClickFunction = { window.alert("Clicked $video!")}
+                    onClickFunction = { window.alert("Clicked $video!") }
                 }
                 +"${video.speaker}: ${video.title}"
             }
