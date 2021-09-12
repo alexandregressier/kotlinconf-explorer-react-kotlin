@@ -8,8 +8,7 @@ external interface AppState : State {
     var unwatchedVideos: List<Video>
     var watchedVideos: List<Video>
 }
-@JsExport
-class App : RComponent<Props, AppState>() {
+@JsExport class App : RComponent<Props, AppState>() {
 
     override fun AppState.init() {
          unwatchedVideos = listOf(

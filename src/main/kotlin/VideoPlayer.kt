@@ -20,8 +20,7 @@ external interface VideoPlayerProps : Props {
     var onWatchedButtonPressed: (Video) -> Unit
     var unwatchedVideo: Boolean
 }
-@JsExport
-class VideoPlayer : RComponent<VideoPlayerProps, State>() {
+@JsExport class VideoPlayer : RComponent<VideoPlayerProps, State>() {
 
     override fun RBuilder.render() {
         styledDiv {

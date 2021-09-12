@@ -11,8 +11,7 @@ external interface VideoListProps : Props {
     var selectedVideo: Video?
     var onSelectVideo: (Video) -> Unit
 }
-@JsExport
-class VideoList : RComponent<VideoListProps, State>() {
+@JsExport class VideoList : RComponent<VideoListProps, State>() {
 
     override fun RBuilder.render() {
         props.videos.forEach { video ->
